@@ -1,0 +1,10 @@
+.formStyle {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding: 20px;
+    display: inline-block;
+}
+
+.navbar {
+    background: rgb(136, 8, 8);
+}
