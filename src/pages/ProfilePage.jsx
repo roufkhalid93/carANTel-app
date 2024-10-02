@@ -18,7 +18,7 @@ export default function ProfilePage() {
     const navigate = useNavigate();
     const [photoUrl, setPhotoUrl] = useState('https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg');
     const { currentUser } = useContext(AuthContext);
-    const userId = currentUser ? currentUser.uid : null;
+    // const userId = currentUser ? currentUser.uid : null;
 
     const [imagePreview, setImagePreview] = useState(null);
     const [isProfilePicChanged, setIsProfilePicChanged] = useState(false);
@@ -48,6 +48,8 @@ export default function ProfilePage() {
     };
 
     const uploadProfilePicture = async (file) => {
+        if (!currentUser) return;
+        const userId = currentUser.uid;
         const storageRef = ref(storage, `profilePictures/${userId}`);
         const snapshot = await uploadBytes(storageRef, file);
         const photoURL = await getDownloadURL(snapshot.ref);
@@ -79,6 +81,8 @@ export default function ProfilePage() {
 
             // } catch (error) {
             //     toast.error("Failed to update the profile details.");
+        } catch (error) {
+            console.error('Error updating profile:', error);
         } finally {
             setIsProfilePicChanged(false);
             setImagePreview(null);
