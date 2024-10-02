@@ -30,10 +30,13 @@ export default function ProfilePage() {
     useEffect(() => {
         if (!currentUser) {
             navigate('/signin');
-        } else if (currentUser && currentUser.photoURL) {
-            setPhotoUrl(currentUser.photoURL);
         } else {
-            setPhotoUrl('https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'); // Fallback to default
+            console.log('Current User:', currentUser); // Log for debugging
+            if (currentUser && currentUser.photoURL) {
+                setPhotoUrl(currentUser.photoURL);
+            } else {
+                setPhotoUrl('https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg');
+            }
         }
     }, [currentUser, navigate]);
 
