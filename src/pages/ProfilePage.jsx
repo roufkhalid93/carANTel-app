@@ -453,18 +453,15 @@ export default function ProfilePage() {
                                         <option value="Manual">Manual</option>
                                     </Form.Control>
                                 </Form.Group>
-                                <Form.Group className="mb-3" controlId="formImages">
+                                {/* <Form.Group className="mb-3" controlId="formImages">
                                     <Form.Label>Images</Form.Label>
                                     <Form.Control
-                                        as="select"
+                                        type="file" multiple
                                         name="images"
                                         value={currentListing.images}
                                         onChange={handleChange}
-                                    >
-                                        <option value="Auto">Auto</option>
-                                        <option value="Manual">Manual</option>
-                                    </Form.Control>
-                                </Form.Group>
+                                    />
+                                </Form.Group> */}
                                 <Form.Group className="mb-3" controlId="formName">
                                     <Form.Label>Name</Form.Label>
                                     <Form.Control

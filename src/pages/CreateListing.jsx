@@ -129,7 +129,7 @@ export default function CreateListing() {
                         <Form.Label>Brand</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="eg: Mazda, Honda, Proton etc"
+                            placeholder="eg: Porshe, Lamborghini, Ford etc"
                             onChange={(e) => setPostBrand(e.target.value)}
                         />
                     </Form.Group>
