@@ -18,6 +18,9 @@ export default function MainPage() {
                         <Nav.Link href="/aboutus" style={{ color: '#E97451' }}>About Us</Nav.Link>
                         <Nav.Link href="/profile" style={{ color: '#E97451' }}>Profile</Nav.Link>
                     </Nav>
+                    <Nav className="ms-auto">
+                        <Nav.Link href="/login" style={{ color: '#E97451' }}>Sign Up/Login</Nav.Link>
+                    </Nav>
                 </Container>
             </Navbar>
             <Container className="mt-4 flex-grow-1">

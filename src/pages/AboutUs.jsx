@@ -34,6 +34,9 @@ export default function AboutUs() {
                         <Nav.Link href="/aboutus"><strong style={{ color: '#FFDEAD' }}>About us</strong></Nav.Link>
                         <Nav.Link href="/profile" style={{ color: '#E97451' }}>Profile</Nav.Link>
                     </Nav>
+                    <Nav className="ms-auto">
+                        <Nav.Link href="/login" style={{ color: '#E97451' }}>Sign Up/Login</Nav.Link>
+                    </Nav>
                 </Container>
             </Navbar>
 
