@@ -58,7 +58,7 @@ export default function CreateListing() {
         };
 
         axios
-            .post("https://53b16e34-1f19-495d-9c5e-94a4070baf7d-00-1ke16n7vtkuda.kirk.replit.dev/listings", data)
+            .post("https://api-render-io-ayy1.onrender.com/listings", data)
             .then((response) => {
                 console.log("Success:", response.data);
 

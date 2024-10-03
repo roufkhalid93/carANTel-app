@@ -119,7 +119,7 @@ export default function ProfilePage() {
     useEffect(() => {
         const fetchListings = async () => {
             try {
-                const response = await axios.get('https://53b16e34-1f19-495d-9c5e-94a4070baf7d-00-1ke16n7vtkuda.kirk.replit.dev/listings');
+                const response = await axios.get('https://api-render-io-ayy1.onrender.com/listings');
                 setListings(response.data);
             } catch (error) {
                 console.error("Error", error.message)
@@ -148,10 +148,10 @@ export default function ProfilePage() {
 
     const handleSaveChanges = async () => {
         try {
-            await axios.put(`https://53b16e34-1f19-495d-9c5e-94a4070baf7d-00-1ke16n7vtkuda.kirk.replit.dev/listings/${currentListing.id}`, currentListing)
+            await axios.put(`https://api-render-io-ayy1.onrender.com/listings/${currentListing.id}`, currentListing)
             setShowEditModal(false);
             //refresh the listings
-            const response = await axios.get('https://53b16e34-1f19-495d-9c5e-94a4070baf7d-00-1ke16n7vtkuda.kirk.replit.dev/listings');
+            const response = await axios.get('https://api-render-io-ayy1.onrender.com/listings');
             setListings(response.data);
 
             toast.success('Listing updated successfully!', {
@@ -180,7 +180,7 @@ export default function ProfilePage() {
         };
 
         try {
-            await axios.delete(`https://53b16e34-1f19-495d-9c5e-94a4070baf7d-00-1ke16n7vtkuda.kirk.replit.dev/listings/${listingId}`, data)
+            await axios.delete(`https://api-render-io-ayy1.onrender.com/listings/${listingId}`, data)
             //remove the deleted listing from the state
             setListings((prevListings) => prevListings.filter((listing) => listing.id !== listingId));
         } catch (error) {
