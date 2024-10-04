@@ -9,7 +9,7 @@ import { storage } from "../firebase";
 import Footer from '../components/Footer';
 import { toast } from "react-toastify";
 import axios from 'axios';
-import { CardText, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { jwtDecode } from 'jwt-decode';
 
 
@@ -206,166 +206,168 @@ export default function ProfilePage() {
             </Navbar>
             <div style={{ backgroundColor: 'white', minHeight: '100vh', color: 'black' }}>
                 <Container>
-                    <Card style={{ width: '550px', height: 'auto', margin: '0 auto', backgroundColor: '#FFDEAD' }}>
-                        <Card.Body>
-                            <Card.Title className="d-flex display-4 mb-1 mt-1 justify-content-center" style={{ marginTop: '2rem' }}>My Profile</Card.Title>
-                            <Form>
-                                <Form.Group>
-                                    <input
-                                        type="file"
-                                        id="fileInput"
-                                        className="d-none"
-                                        onChange={handleImageChange}
-                                        accept=".jpeg, .png, .jpg"
-                                        disabled={!changeDetail}
-                                    />
-                                    <div className="d-flex justify-content-center">
-                                        <div
-                                            className="position-relative"
-                                            style={{ width: '400px', height: '400px' }}
-                                            onClick={handleImageUpload}
-                                        >
-                                            {imagePreview ?
-                                                <img src={imagePreview} className="w-100 h-100 object-fit-cover" alt="Profile Preview" style={{ padding: '30px' }} />
-                                                : currentUser.photoURL ? (
-                                                    <img src={currentUser.photoURL} className="w-100 h-100 object-fit-cover" alt="Profile" style={{ padding: '30px' }} />
-                                                ) : (
-                                                    <img src={photoUrl} className="w-100 h-100 object-fit-cover" alt="Default Profile" style={{ padding: '30px' }} />
-                                                )
-                                            }
-                                            {changeDetail && (
-                                                <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-50">
-                                                    <span className="text-white fs-5">Upload Profile Pic</span>
+                    <Row className="justify-content-center my-4">
+                        <Col xs={12} sm={10} md={8} lg={6} xl={5}>
+                            <Card style={{ width: '550px', height: 'auto', margin: '0 auto', backgroundColor: '#FFDEAD' }}>
+                                <Card.Body>
+                                    <Card.Title className="d-flex display-4 mb-1 mt-1 justify-content-center" style={{ marginTop: '2rem' }}>My Profile</Card.Title>
+                                    <Form>
+                                        <Form.Group>
+                                            <input
+                                                type="file"
+                                                id="fileInput"
+                                                className="d-none"
+                                                onChange={handleImageChange}
+                                                accept=".jpeg, .png, .jpg"
+                                                disabled={!changeDetail}
+                                            />
+                                            <div className="d-flex justify-content-center">
+                                                <div
+                                                    className="position-relative"
+                                                    style={{ width: '400px', height: '400px' }}
+                                                    onClick={handleImageUpload}
+                                                >
+                                                    {imagePreview ?
+                                                        <img src={imagePreview} className="w-100 h-100 object-fit-cover" alt="Profile Preview" style={{ padding: '30px' }} />
+                                                        : currentUser.photoURL ? (
+                                                            <img src={currentUser.photoURL} className="w-100 h-100 object-fit-cover" alt="Profile" style={{ padding: '30px' }} />
+                                                        ) : (
+                                                            <img src={photoUrl} className="w-100 h-100 object-fit-cover" alt="Default Profile" style={{ padding: '30px' }} />
+                                                        )
+                                                    }
+                                                    {changeDetail && (
+                                                        <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-50">
+                                                            <span className="text-white fs-5">Upload Profile Pic</span>
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            )}
+                                            </div>
+                                        </Form.Group>
+
+                                        {/* Conditionally Render Profile Name and Email */}
+                                        <div className="text-center mt-1">
+                                            <h3>{profileName}</h3>
+                                            <p>{email}</p>
                                         </div>
+
+
+                                        {/* Form Group for Username and email (editable) */}
+                                        {changeDetail && (
+                                            <>
+                                                <Form.Group className="mt-3">
+                                                    <Form.Control
+                                                        type="text"
+                                                        placeholder="Add username"
+                                                        value={profileName}
+                                                        onChange={(e) => setProfileName(e.target.value)}
+                                                    />
+                                                </Form.Group>
+                                                {/* Form Group for Email */}
+                                                <Form.Group className="mt-3">
+                                                    <Form.Control
+                                                        type="email"
+                                                        placeholder="Add email"
+                                                        value={email}
+                                                        onChange={(e) => setEmail(e.target.value)}
+                                                    />
+                                                </Form.Group>
+                                            </>
+                                        )}
+                                    </Form>
+                                    <div className="d-flex justify-content-center mt-3 gap-3">
+                                        <Button
+                                            variant="dark"
+                                            style={{ width: '20%' }}
+                                            onClick={() => {
+                                                changeDetail && submitChanges();
+                                                setChangeDetail(prevState => !prevState);
+                                            }}
+                                        >
+                                            {changeDetail ? "Save" : "Edit Profile"}
+                                        </Button>
+                                        <Button
+                                            variant="danger"
+                                            style={{ width: '20%' }}
+                                            onClick={handleLogout}
+                                        >
+                                            Sign Out
+                                        </Button>
                                     </div>
-                                </Form.Group>
-
-                                {/* Conditionally Render Profile Name and Email */}
-                                <div className="text-center mt-1">
-                                    <h3>{profileName}</h3>
-                                    <p>{email}</p>
-                                </div>
-
-
-                                {/* Form Group for Username and email (editable) */}
-                                {changeDetail && (
-                                    <>
-                                        <Form.Group className="mt-3">
-                                            <Form.Control
-                                                type="text"
-                                                placeholder="Add username"
-                                                value={profileName}
-                                                onChange={(e) => setProfileName(e.target.value)}
-                                            />
-                                        </Form.Group>
-                                        {/* Form Group for Email */}
-                                        <Form.Group className="mt-3">
-                                            <Form.Control
-                                                type="email"
-                                                placeholder="Add email"
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                            />
-                                        </Form.Group>
-                                    </>
-                                )}
-                            </Form>
-                            <div className="d-flex justify-content-center mt-3 gap-3">
-                                <Button
-                                    variant="dark"
-                                    style={{ width: '20%' }}
-                                    onClick={() => {
-                                        changeDetail && submitChanges();
-                                        setChangeDetail(prevState => !prevState);
-                                    }}
-                                >
-                                    {changeDetail ? "Save" : "Edit Profile"}
-                                </Button>
-                                <Button
-                                    variant="danger"
-                                    style={{ width: '20%' }}
-                                    onClick={handleLogout}
-                                >
-                                    Sign Out
-                                </Button>
-                            </div>
-                            <div className="d-flex justify-content-center mt-3">
-                                <Button
-                                    style={{ width: '60%', backgroundColor: '#8B4513', border: 'none' }}
-                                    href='/createlisting'>
-                                    <strong>Advertise your vehicle</strong>
-                                </Button>
-                            </div>
-                        </Card.Body>
-                    </Card>
+                                    <div className="d-flex justify-content-center mt-3">
+                                        <Button
+                                            style={{ width: '60%', backgroundColor: '#8B4513', border: 'none' }}
+                                            href='/createlisting'>
+                                            <strong>Advertise your vehicle</strong>
+                                        </Button>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                     <div>
-                        <h4 className=' d-flex justify-content-center mt-2 mb-2'>Your Listings:</h4>
+                        <h4 className="d-flex justify-content-center mt-2 mb-2">Your Listings:</h4>
                         {listings.map((listing) => (
-                            <Card className="mb-2" key={listing.id} style={{ backgroundColor: '#ECFFDC', width: 'auto', height: '180px', margin: '0 auto' }}>
+                            <Card
+                                className="mb-2 mx-auto"
+                                key={listing.id}
+                                style={{
+                                    backgroundColor: '#ECFFDC',
+                                    width: '100%',         // Make it responsive
+                                    maxWidth: '700px',     // Maximum width for larger screens
+                                    height: 'auto',        // Adjust height based on content
+                                }}
+                            >
                                 <Card.Body className="card-body-grey">
-                                    <Row className="justify-content-center">
-                                        <Col xs={12} md={2} className="d-flex align-items-center">
+                                    <Row className="g-3">
+                                        <Col xs={12} md={3} className="d-flex align-items-center">
                                             <Card.Img
-                                                className="card-img-custom"
+                                                className="img-fluid"
                                                 variant="top"
                                                 src={listing.images}
                                                 style={{
-                                                    width: '100%',            // Make the image take the full width of the column
-                                                    height: '140px',         // Set a fixed height for the image
-                                                    objectFit: 'cover',      // Crop the image to fill the area while maintaining aspect ratio
+                                                    width: '100%',       // Full width in the column
+                                                    height: '140px',     // Fixed height
+                                                    objectFit: 'cover',  // Crop the image while maintaining aspect ratio
                                                 }}
                                             />
                                         </Col>
-                                        <Col xs={12} md={10}>
-                                            <Row style={{ backgroundColor: '#FFE5B4', borderRadius: '8px' }}>
-                                                <Col xs={2}>
+                                        <Col xs={12} md={9}>
+                                            <Row className="mb-2 p-1" style={{ backgroundColor: '#FFF8DC', borderRadius: '8px' }}>
+                                                <Col xs={3}>
                                                     <Card.Text className="card-text-custom"><strong>Model:</strong></Card.Text>
                                                 </Col>
-                                                <Col xs={10}>
-                                                    <Card.Text className="card-text-custom d-flex justify-content-center" style={{ color: '#8B4513' }}><strong>{listing.model}</strong></Card.Text>
+                                                <Col xs={9}>
+                                                    <Card.Text className="card-text-custom d-flex justify-content-start" style={{ color: '#8B4513' }}><strong>{listing.model}</strong></Card.Text>
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col>
-                                                    <CardText className="card-text-custom mb=0"><strong>Status:</strong></CardText>
-                                                    <CardText className="card-text-custom mb=0"><strong>Transmission:</strong></CardText>
+                                                <Col xs={6}>
+                                                    <Card.Text className="mb-0"><strong>Status:</strong> {listing.sell_or_rent}</Card.Text>
+                                                    <Card.Text><strong>Transmission:</strong> {listing.transmission}</Card.Text>
                                                 </Col>
-                                                <Col>
-                                                    <CardText className="card-text-custom">{listing.sell_or_rent}</CardText>
-                                                    <CardText className="card-text-custom">{listing.transmission}</CardText>
-                                                </Col>
-                                                <Col>
-                                                    <CardText className="card-text-custom"><strong>Brand:</strong></CardText>
-                                                    <CardText className="card-text-custom"><strong>Year:</strong></CardText>
-                                                </Col>
-                                                <Col>
-                                                    <CardText className="card-text-custom">{listing.brand}</CardText>
-                                                    <CardText className="card-text-custom">{listing.year}</CardText>
-                                                </Col>
-                                                <Col className="card-column-grey">
-                                                    <CardText className="card-text-custom"><strong>Name:</strong></CardText>
-                                                    <CardText className="card-text-custom"><strong>Phone no:</strong></CardText>
-                                                </Col>
-                                                <Col className="card-column-grey">
-                                                    <CardText>{listing.name}</CardText>
-                                                    <CardText>{listing.phone_number}</CardText>
+                                                <Col xs={6} className="g-0">
+                                                    <Card.Text className="mb-0"><strong>Brand:</strong> {listing.brand}</Card.Text>
+                                                    <Card.Text><strong>Year:</strong> {listing.year}</Card.Text>
                                                 </Col>
                                             </Row>
-                                            <Row>
-                                                <Col className="d-flex justify-content-start mt-2">
+                                            <Row className="g-0">
+                                                <Col xs={6}>
+                                                    <Card.Text><strong>Name:</strong> {listing.name}</Card.Text>
+                                                </Col>
+                                                <Col xs={6}>
+                                                    <Card.Text><strong>Phone no:</strong> {listing.phone_number}</Card.Text>
+                                                </Col>
+                                            </Row>
+                                            <Row className="mt-3">
+                                                <Col className="d-flex justify-content-start">
                                                     <Button
                                                         variant="secondary"
                                                         className="me-2"
                                                         onClick={() => handleEditClick(listing)}
                                                         style={{
-                                                            height: '30px',           // Fixed height
-                                                            fontSize: '12px',         // Reduce font size
-                                                            lineHeight: '20px',       // Match line height to button height
-                                                            display: 'flex',          // Use flexbox to align items
-                                                            alignItems: 'center',     // Center align the text and icon
-                                                            padding: '0 5px'          // Reduce padding
+                                                            height: '30px',
+                                                            fontSize: '12px',
+                                                            padding: '0 5px',
                                                         }}
                                                     >
                                                         <i className="bi bi-pencil-square" style={{ fontSize: '16px', marginRight: '3px' }}></i>
@@ -375,12 +377,9 @@ export default function ProfilePage() {
                                                         variant="danger"
                                                         onClick={() => handleDelete(listing.id)}
                                                         style={{
-                                                            height: '30px',           // Fixed height
-                                                            fontSize: '12px',         // Reduce font size
-                                                            lineHeight: '20px',       // Match line height to button height
-                                                            display: 'flex',          // Use flexbox to align items
-                                                            alignItems: 'center',     // Center align the text and icon
-                                                            padding: '0 5px'          // Reduce padding
+                                                            height: '30px',
+                                                            fontSize: '12px',
+                                                            padding: '0 5px',
                                                         }}
                                                     >
                                                         <i className="bi bi-trash-fill" style={{ fontSize: '16px', marginRight: '3px' }}></i>
