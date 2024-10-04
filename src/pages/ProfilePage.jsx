@@ -208,9 +208,9 @@ export default function ProfilePage() {
                 <Container>
                     <Row className="justify-content-center my-4">
                         <Col xs={12} sm={10} md={8} lg={6} xl={5}>
-                            <Card style={{ width: '550px', height: 'auto', margin: '0 auto', backgroundColor: '#FFDEAD' }}>
+                            <Card style={{ width: 'auto', height: 'auto', margin: '0 auto', backgroundColor: '#FFDEAD' }}>
                                 <Card.Body>
-                                    <Card.Title className="d-flex display-4 mb-1 mt-1 justify-content-center" style={{ marginTop: '2rem' }}>My Profile</Card.Title>
+                                    <Card.Title className="d-flex display-6 mb-1 mt-1 justify-content-center" style={{ marginTop: '2rem' }}>My Profile</Card.Title>
                                     <Form>
                                         <Form.Group>
                                             <input
@@ -277,7 +277,7 @@ export default function ProfilePage() {
                                     <div className="d-flex justify-content-center mt-3 gap-3">
                                         <Button
                                             variant="dark"
-                                            style={{ width: '20%' }}
+                                            style={{ width: '30%' }}
                                             onClick={() => {
                                                 changeDetail && submitChanges();
                                                 setChangeDetail(prevState => !prevState);
@@ -287,7 +287,7 @@ export default function ProfilePage() {
                                         </Button>
                                         <Button
                                             variant="danger"
-                                            style={{ width: '20%' }}
+                                            style={{ width: '30%' }}
                                             onClick={handleLogout}
                                         >
                                             Sign Out
