@@ -3,10 +3,13 @@ import MapComponent from '../components/MapComponent';
 import { useState } from 'react';
 import Footer from '../components/Footer';
 import '../App.css';
+import { useContext } from 'react';
+import { AuthContext } from '../components/AuthProvider';
 
 
 
 export default function AboutUs() {
+    const { currentUser } = useContext(AuthContext);
 
     const [showContact, setShowContact] = useState(false);
 
@@ -35,7 +38,10 @@ export default function AboutUs() {
                         <Nav.Link href="/profile" style={{ color: '#E97451' }}>Profile</Nav.Link>
                     </Nav>
                     <Nav className="ms-auto">
-                        <Nav.Link href="/login" style={{ color: '#E97451' }}>Sign Up/Login</Nav.Link>
+                        {/* Only show the Sign Up/Login link if the user is not logged in */}
+                        {!currentUser && (
+                            <Nav.Link href="/login" style={{ color: '#E97451' }}>Sign Up/Login</Nav.Link>
+                        )}
                     </Nav>
                 </Container>
             </Navbar>

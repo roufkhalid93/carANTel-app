@@ -15,9 +15,13 @@ import VeteranCard3 from '../components/VeteranCard3';
 import VeteranCard4 from '../components/VeteranCard4';
 import Footer from '../components/Footer';
 import '../App.css';
+import { useContext } from 'react';
+import { AuthContext } from '../components/AuthProvider';
 
 
 export default function MainPage() {
+    const { currentUser } = useContext(AuthContext);
+
     return (
         <div>
             <Navbar className="navbar">
@@ -29,7 +33,10 @@ export default function MainPage() {
                         <Nav.Link href="/profile" style={{ color: '#E97451' }}>Profile</Nav.Link>
                     </Nav>
                     <Nav className="ms-auto">
-                        <Nav.Link href="/login" style={{ color: '#E97451' }}>Sign Up/Login</Nav.Link>
+                        {/* Only show the Sign Up/Login link if the user is not logged in */}
+                        {!currentUser && (
+                            <Nav.Link href="/login" style={{ color: '#E97451' }}>Sign Up/Login</Nav.Link>
+                        )}
                     </Nav>
                 </Container>
             </Navbar>
