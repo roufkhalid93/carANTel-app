@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import axios from 'axios';
 import { Col, Row } from "react-bootstrap";
 import { jwtDecode } from 'jwt-decode';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 export default function ProfilePage() {
@@ -114,20 +115,41 @@ export default function ProfilePage() {
     };
 
     //handle display listing
+    // const [listings, setListings] = useState([]);
+
+    // useEffect(() => {
+    //     const fetchListings = async () => {
+    //         try {
+    //             const response = await axios.get('https://api-render-io-ayy1.onrender.com/listings');
+    //             setListings(response.data);
+    //         } catch (error) {
+    //             console.error("Error", error.message)
+    //         }
+    //     };
+
+    //     fetchListings()
+    // }, []);
+
+    const [loading, setLoading] = useState(true);
     const [listings, setListings] = useState([]);
 
     useEffect(() => {
-        const fetchListings = async () => {
-            try {
-                const response = await axios.get('https://api-render-io-ayy1.onrender.com/listings');
-                setListings(response.data);
-            } catch (error) {
-                console.error("Error", error.message)
-            }
-        };
-
-        fetchListings()
+        // Simulating an API call to fetch bookings
+        fetchBookings();
     }, []);
+
+    const fetchBookings = async () => {
+        try {
+            // Simulate API fetch
+            const response = await fetch('https://api-render-io-ayy1.onrender.com/listings');
+            const data = await response.json();
+            setListings(data);
+        } catch (error) {
+            console.error('Error fetching bookings', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     //update listing
     const [showEditModal, setShowEditModal] = useState(false);
@@ -187,10 +209,6 @@ export default function ProfilePage() {
             console.log("Error", error);
         }
     };
-
-
-
-
 
     return (
         <div>
@@ -306,7 +324,10 @@ export default function ProfilePage() {
                     </Row>
                     <div>
                         <h4 className="d-flex justify-content-center mt-2 mb-2">Your Listings:</h4>
-                        {listings.map((listing) => (
+                        <div className="d-flex justify-content-center align-items-center">
+                            {loading && (<Spinner animation='border' className='ms-3 mt-3' style={{ color: '#8B4513' }} />)}
+                        </div>
+                        {!loading && listings.length > 0 && listings.map((listing) => (
                             <Card
                                 className="mb-2 mx-auto"
                                 key={listing.id}
