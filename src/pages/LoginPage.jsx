@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 export default function LoginPage() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const auth = getAuth();
     const { currentUser } = useContext(AuthContext)
@@ -52,12 +53,29 @@ export default function LoginPage() {
                         <h3 className="text-center mb-4"><strong>Sign In</strong></h3>
                         <FormGroup className="mb-2" controlId="UserEmail">
                             <FormLabel>Email address</FormLabel>
-                            <FormControl type="email" placeholder="Enter your email" onChange={(e) => setUsername(e.target.value)} />
+                            <FormControl
+                                type="email"
+                                placeholder="Enter your email"
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
                         </FormGroup>
 
                         <FormGroup className="mb-2" controlId="UserPassword">
                             <FormLabel>Password</FormLabel>
-                            <FormControl type="email" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
+                            <div className="input-group">
+                                <FormControl
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Enter your password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <Button
+                                    variant="outline-secondary"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    style={{ backgroundColor: 'white' }}
+                                >
+                                    {showPassword ? <i className="bi bi-eye-slash-fill"></i> : <i className="bi bi-eye-fill"></i>}
+                                </Button>
+                            </div>
                         </FormGroup>
 
                         <div className="d-flex justify-content-between mb-4">

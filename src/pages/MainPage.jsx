@@ -28,9 +28,13 @@ export default function MainPage() {
                 <Container>
                     <Navbar.Brand href="/" style={{ color: '#E97451' }} > <strong>car<strong style={{ color: 'white' }}>ANT</strong>el</strong></Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="/promotion" style={{ color: '#E97451' }}>Promotion</Nav.Link>
+                        {currentUser && (
+                            <Nav.Link href="/promotion" style={{ color: '#E97451' }}>Promotion</Nav.Link>
+                        )}
                         <Nav.Link href="/aboutus" style={{ color: '#E97451' }}>About Us</Nav.Link>
-                        <Nav.Link href="/profile" style={{ color: '#E97451' }}>Profile</Nav.Link>
+                        {currentUser && (
+                            <Nav.Link href="/profile" style={{ color: '#E97451' }}>Profile</Nav.Link>
+                        )}
                     </Nav>
                     <Nav className="ms-auto">
                         {/* Only show the Sign Up/Login link if the user is not logged in */}

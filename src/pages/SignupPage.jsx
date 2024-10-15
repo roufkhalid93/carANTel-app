@@ -13,6 +13,7 @@ export default function SignupPage() {
     // const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const auth = getAuth();
     const { currentUser } = useContext(AuthContext)
@@ -92,7 +93,20 @@ export default function SignupPage() {
 
                         <FormGroup className="mb-2" controlId="UserPassword">
                             <FormLabel>Password</FormLabel>
-                            <FormControl type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
+                            <div className="input-group">
+                                <FormControl
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Enter your password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <Button
+                                    variant="outline-secondary"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    style={{ backgroundColor: 'white' }}
+                                >
+                                    {showPassword ? <i className="bi bi-eye-slash-fill"></i> : <i className="bi bi-eye-fill"></i>}
+                                </Button>
+                            </div>
                         </FormGroup>
 
                         <div className="d-flex justify-content-between mb-4">
