@@ -173,7 +173,7 @@ export default function ProfilePage() {
             await axios.put(`https://api-render-io-ayy1.onrender.com/listings/${currentListing.id}`, currentListing)
             setShowEditModal(false);
             //refresh the listings
-            const response = await axios.get('https://api-render-io-ayy1.onrender.com/listings');
+            const response = await axios.get(`https://api-render-io-ayy1.onrender.com/listings`);
             setListings(response.data);
 
             toast.success('Listing updated successfully!', {
