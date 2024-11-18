@@ -18,22 +18,71 @@ export default function SignupPage() {
     const auth = getAuth();
     const { currentUser } = useContext(AuthContext)
 
+    // useEffect(() => {
+    //     if (currentUser) navigate("/login");
+    // }, [currentUser, navigate]);
+
+
+    // const handleSignUp = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const res = await createUserWithEmailAndPassword(
+    //             auth,
+    //             // username,
+    //             email,
+    //             password
+    //         );
+    //         console.log(res.user);
+    //         toast.success('Account created successfully!', {
+    //             position: "bottom-center",
+    //             autoClose: 1000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             theme: "dark",
+    //         });
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+
+    // const provider = new GoogleAuthProvider();
+    // const handleGoogleLogin = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         await signInWithPopup(auth, provider);
+    //         toast.success('Account created successfully!', {
+    //             position: "bottom-center",
+    //             autoClose: 1000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             theme: "dark",
+    //         });
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
     useEffect(() => {
-        if (currentUser) navigate("/login");
+        if (currentUser) navigate("/");
     }, [currentUser, navigate]);
 
-
+    // Email/Password Signup
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const res = await createUserWithEmailAndPassword(
-                auth,
-                // username,
-                email,
-                password
-            );
-            console.log(res.user);
-            toast.success('Account created successfully!', {
+            const res = await createUserWithEmailAndPassword(auth, email, password);
+            const user = res.user;
+
+            // Fetch and store token
+            const token = await user.getIdToken(true); // Force fresh token
+            localStorage.setItem("authToken", token);
+            console.log("Token stored in local storage:", token);
+
+            toast.success("Account created successfully!", {
                 position: "bottom-center",
                 autoClose: 1000,
                 hideProgressBar: false,
@@ -42,17 +91,35 @@ export default function SignupPage() {
                 draggable: true,
                 theme: "dark",
             });
+            navigate("/"); // Redirect to homepage after signup
         } catch (error) {
-            console.error(error);
+            console.error("Error during signup:", error);
+            toast.error("Signup failed. Please try again.", {
+                position: "bottom-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+            });
         }
     };
 
-    const provider = new GoogleAuthProvider();
+    // Google Sign-In
     const handleGoogleLogin = async (e) => {
         e.preventDefault();
         try {
-            await signInWithPopup(auth, provider);
-            toast.success('Account created successfully!', {
+            const provider = new GoogleAuthProvider();
+            const res = await signInWithPopup(auth, provider);
+            const user = res.user;
+
+            // Fetch and store token
+            const token = await user.getIdToken(true); // Force fresh token
+            localStorage.setItem("authToken", token);
+            console.log("Token stored in local storage:", token);
+
+            toast.success("Account created successfully!", {
                 position: "bottom-center",
                 autoClose: 1000,
                 hideProgressBar: false,
@@ -61,14 +128,20 @@ export default function SignupPage() {
                 draggable: true,
                 theme: "dark",
             });
+            navigate("/"); // Redirect to homepage after signup
         } catch (error) {
-            console.error(error);
+            console.error("Error during Google sign-in:", error);
+            toast.error("Google sign-in failed. Please try again.", {
+                position: "bottom-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+            });
         }
-    }
-
-
-
-
+    };
 
     return (
         <div style={{

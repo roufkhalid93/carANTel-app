@@ -24,15 +24,32 @@ export default function LoginPage() {
     }, [currentUser, navigate]);
 
 
+    // const handleLogin = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const userCredential = await signInWithEmailAndPassword(auth, username, password);
+    //         const user = userCredential.user;
+    //         const token = await user.getIdToken();
+    //         localStorage.setItem("authToken", token);
+    //         console.log("Token stored in local storage", token);
+    //         navigate("/") //redirect after successful login
+    //     } catch (error) {
+    //         console.error("Error logging in:", error);
+    //     }
+    // };
+
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, username, password);
             const user = userCredential.user;
-            const token = await user.getIdToken();
+
+            // Fetch a fresh token and store it
+            const token = await user.getIdToken(true); // Force a fresh token
             localStorage.setItem("authToken", token);
-            console.log("Token stored in local storage", token);
-            navigate("/") //redirect after successful login
+            console.log("Token stored in local storage:", token);
+
+            navigate("/"); // Redirect after successful login
         } catch (error) {
             console.error("Error logging in:", error);
         }
