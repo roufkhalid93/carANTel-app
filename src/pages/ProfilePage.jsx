@@ -105,16 +105,32 @@ export default function ProfilePage() {
 
 
 
+    // const handleLogout = async () => {
+    //     try {
+    //         await auth.signOut();
+    //         navigate("/login"); //Navigate to /login after successful logout
+    //     } catch (error) {
+    //         console.error("Logout failed", error);
+    //     }
+    // };
+
     const handleLogout = async () => {
         try {
             await auth.signOut();
-            navigate("/login"); //Navigate to /login after successful logout
+
+            // Clear the stored token from localStorage
+            localStorage.removeItem("authToken");
+            console.log("Token removed from local storage.");
+
+            navigate("/login"); // Navigate to /login after successful logout
         } catch (error) {
-            console.error("Logout failed", error);
+            console.error("Logout failed:", error);
         }
     };
 
     //handle display listing
+
+    // version1
     // const [listings, setListings] = useState([]);
 
     // useEffect(() => {
@@ -130,26 +146,51 @@ export default function ProfilePage() {
     //     fetchListings()
     // }, []);
 
+    // version2
+    // const [loading, setLoading] = useState(true);
+    // const [listings, setListings] = useState([]);
+
+    // useEffect(() => {
+    //     // Simulating an API call to fetch bookings
+    //     fetchBookings();
+    // }, []);
+
+    // const fetchBookings = async () => {
+    //     try {
+    //         // Simulate API fetch
+    //         const response = await fetch('https://api-render-io-ayy1.onrender.com/listings');
+    //         const data = await response.json();
+    //         setListings(data);
+    //     } catch (error) {
+    //         console.error('Error fetching bookings', error);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
+    // version3
     const [loading, setLoading] = useState(true);
     const [listings, setListings] = useState([]);
 
-    useEffect(() => {
-        // Simulating an API call to fetch bookings
-        fetchBookings();
-    }, []);
-
     const fetchBookings = async () => {
         try {
-            // Simulate API fetch
-            const response = await fetch('https://api-render-io-ayy1.onrender.com/listings');
+            const token = localStorage.getItem('authToken');
+            const decoded = jwtDecode(token);
+            const userId = decoded.uid || decoded.user_id || decoded.sub;
+
+            const response = await fetch(`https://api-render-io-ayy1.onrender.com/listings/user/${userId}`);
             const data = await response.json();
             setListings(data);
         } catch (error) {
             console.error('Error fetching bookings', error);
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
     };
+
+    useEffect(() => {
+        fetchBookings();
+    }, []);
 
     //update listing
     const [showEditModal, setShowEditModal] = useState(false);
@@ -173,7 +214,7 @@ export default function ProfilePage() {
             await axios.put(`https://api-render-io-ayy1.onrender.com/listings/${currentListing.id}`, currentListing)
             setShowEditModal(false);
             //refresh the listings
-            const response = await axios.get(`https://api-render-io-ayy1.onrender.com/listings`);
+            const response = await axios.get(`https://api-render-io-ayy1.onrender.com/listings/user/${userId}`);
             setListings(response.data);
 
             toast.success('Listing updated successfully!', {
@@ -204,6 +245,16 @@ export default function ProfilePage() {
         try {
             await axios.delete(`https://api-render-io-ayy1.onrender.com/listings/${listingId}`, data)
             //remove the deleted listing from the state
+            toast.success('Listing deleted successfully!', {
+                position: "bottom-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+                style: { fontFamily: 'Segoe UI, sans-serif', fontSize: '1rem' }
+            });
             setListings((prevListings) => prevListings.filter((listing) => listing.id !== listingId));
         } catch (error) {
             console.log("Error", error);

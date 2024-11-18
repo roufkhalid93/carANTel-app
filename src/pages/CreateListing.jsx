@@ -26,19 +26,124 @@ export default function CreateListing() {
     const navigate = useNavigate();
 
 
-    //handle post listing
-    const handleSave = async () => {
-        //get stored JWT token
-        const token = localStorage.getItem("authToken");
-        console.log(token)
+    // // //handle post listing
+    // const handleSave = async () => {
+    //     //get stored JWT token
+    //     const token = localStorage.getItem("authToken");
+    //     console.log(token)
 
-        //Decode the token to fetch the userid
-        const decode = jwtDecode(token);
-        const userId = decode.id
+    //     //Decode the token to fetch the userid
+    //     const decode = jwtDecode(token);
+    //     const userId = decode.id
+
+    //     let imageUrl = "";
+
+    //     // start
+    //     if (postImages) {
+    //         const imageRef = ref(storage, `images/${postImages.name}`);
+    //         await uploadBytes(imageRef, postImages);
+    //         imageUrl = await getDownloadURL(imageRef);
+    //     }
+
+    //     const data = {
+    //         sell_or_rent: postSellRent,
+    //         brand: postBrand,
+    //         model: postModel,
+    //         year: postYear,
+    //         transmission: postTransmission,
+    //         images: imageUrl,
+    //         name: postName,
+    //         phone_number: postPhoneNumber,
+    //         user_id: userId
+    //     };
+
+    //     axios
+    //         .post("https://api-render-io-ayy1.onrender.com/listings", data)
+    //         .then((response) => {
+    //             console.log("Success:", response.data);
+
+    //             toast.success('Listing created successfully!', {
+    //                 position: "bottom-center",
+    //                 autoClose: 1000,
+    //                 hideProgressBar: false,
+    //                 closeOnClick: true,
+    //                 pauseOnHover: true,
+    //                 draggable: true,
+    //                 theme: "dark",
+    //             });
+
+    //             setTimeout(() => {
+    //                 navigate('/profile');
+    //             }, 1000); //redirect to the profile page once submit listing
+    //         })
+    //         .catch((error) => {
+    //             console.log("Error", error);
+
+    //             toast.error('Failed to create the listing.', {
+    //                 position: "bottom-center",
+    //                 autoClose: 1000,
+    //                 hideProgressBar: false,
+    //                 closeOnClick: true,
+    //                 pauseOnHover: true,
+    //                 draggable: true,
+    //                 theme: "dark",
+    //             });
+    //         });
+
+    // }
+
+    // const handleImageChange = (e) => {
+    //     setPostImages(e.target.files[0]);
+    // };
+    // // end
+    // -----------
+    // //test new code
+    // // Function to check if the user is logged in and retrieve userId
+    const getUserId = () => {
+        const token = localStorage.getItem("authToken");
+
+        if (!token) {
+            console.error("Token is missing from localStorage.");
+            // If no token is found, redirect to the login page
+            toast.error("Please log in to create a listing.", { position: "top-center" });
+            navigate("/login");
+            return null;
+        }
+
+        try {
+            // Decode the token and get the user ID
+            const decodedToken = jwtDecode(token);
+            console.log("Decoded Firebase Token:", decodedToken);
+
+            const userId = decodedToken.uid || decodedToken.user_id || decodedToken.sub;
+            if (!userId) {
+                console.warn("User ID not found in the token. Full token:", decodedToken);
+                return null;
+            }
+            return userId;
+        } catch (error) {
+            console.error("Failed to decode token:", error);
+            // If token is invalid, redirect to the login page
+            toast.error("Invalid token. Please log in again.", { position: "top-center" });
+            navigate("/login");
+            return null;
+        }
+    };
+
+    // Handle post listing
+    const handleSave = async () => {
+        // Get the user ID by calling getUserId
+        const userId = getUserId();
+        if (!userId) {
+            console.error("No user ID found. Aborting handleSave.");
+            return; // Exit if there's no user ID (user is not logged in)
+        }
+
+        console.log("User ID retrieved:", userId);
 
         let imageUrl = "";
 
-        // start
+        // Upload image if it exists
         if (postImages) {
             const imageRef = ref(storage, `images/${postImages.name}`);
             await uploadBytes(imageRef, postImages);
@@ -74,7 +179,7 @@ export default function CreateListing() {
 
                 setTimeout(() => {
                     navigate('/profile');
-                }, 1000); //redirect to the profile page once submit listing
+                }, 1000); // Redirect to the profile page once the listing is submitted
             })
             .catch((error) => {
                 console.log("Error", error);
@@ -89,13 +194,13 @@ export default function CreateListing() {
                     theme: "dark",
                 });
             });
-
-    }
+    };
 
     const handleImageChange = (e) => {
         setPostImages(e.target.files[0]);
     };
-    // end
+    // -----
+
 
     return (
         <>
