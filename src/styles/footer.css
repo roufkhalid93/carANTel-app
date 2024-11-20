@@ -5,24 +5,26 @@
 }
 
 .footer {
-    background-color: #000;
+    background-color: #880808;
 }
 
 .footerContainer {
     width: 100%;
     padding: 20px 30px 20px;
-    background-color: #000;
+    background-color: #880808;
 }
 
 .socialIcons {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .socialIcons a {
     text-decoration: none;
     padding: 25px;
-    background-color: white;
+    background-color: #FFFFF0;
     margin: 10px;
     border-radius: 50%;
     width: 40px;
@@ -41,7 +43,7 @@
 
 /* Hover effect on social media icons */
 .socialIcons a:hover {
-    background-color: #111;
+    background-color: #E97451;
     transition: 0.5s;
 }
 
@@ -74,14 +76,14 @@
 }
 
 .footerBottom {
-    background-color: #000;
+    background-color: #880808;
     padding: 20px;
     text-align: center;
     margin-top: auto;
 }
 
 .footerBottom p {
-    color: white;
+    color: #FFDEAD;
 }
 
 .designer {
