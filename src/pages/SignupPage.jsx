@@ -193,7 +193,7 @@ export default function SignupPage() {
                         <Button className="rounded-pill w-100 mb-2" variant="outline-dark" style={{ backgroundColor: '#A52A2A', border: 'none', color: 'white' }} onClick={handleGoogleLogin}>
                             <i className="bi bi-google"></i>oogle
                         </Button>
-                        <h7 className="d-flex justify-content-end mt-3"><strong style={{ color: '#E97451' }}> car<strong style={{ color: '#880808' }}>ANT</strong>el</strong></h7>
+                        <h5 className="d-flex justify-content-end mt-3"><strong style={{ color: '#E97451' }}> car<strong style={{ color: '#880808' }}>ANT</strong>el</strong></h5>
                     </Form>
                 </Card>
             </Container>

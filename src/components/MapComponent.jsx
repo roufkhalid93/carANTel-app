@@ -16,12 +16,13 @@ export default function MapComponent() {
                 center: { lat: 2.942, lng: 101.588 },
                 zoom: 8,
             });
+            map.addListener('click', (e) => {
+                console.log('Map clicked at', e.latLng.toString());
+            });
         });
     }, []);
 
     return (
-        <div id="map" style={{ height: '400px', width: '100%' }}></div>
+        <div id="map" style={{ height: '400px', width: '100%', marginBottom: '15px' }}></div>
     );
 }
-
-

@@ -23,21 +23,6 @@ export default function LoginPage() {
         if (currentUser) navigate("/");
     }, [currentUser, navigate]);
 
-
-    // const handleLogin = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const userCredential = await signInWithEmailAndPassword(auth, username, password);
-    //         const user = userCredential.user;
-    //         const token = await user.getIdToken();
-    //         localStorage.setItem("authToken", token);
-    //         console.log("Token stored in local storage", token);
-    //         navigate("/") //redirect after successful login
-    //     } catch (error) {
-    //         console.error("Error logging in:", error);
-    //     }
-    // };
-
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
@@ -99,7 +84,7 @@ export default function LoginPage() {
                             <Form.Text>Yet to have an account? <a href="signup">Register</a></Form.Text>
                         </div>
                         <Button className="rounded-pill w-100 mb-2" style={{ backgroundColor: '#A52A2A', border: 'none', color: 'white' }} onClick={handleLogin}>Log In</Button>
-                        <h7 className="d-flex justify-content-end mt-3"><strong style={{ color: '#E97451' }}> car<strong style={{ color: '#880808' }}>ANT</strong>el</strong></h7>
+                        <h5 className="d-flex justify-content-end mt-3"><strong style={{ color: '#E97451' }}> car<strong style={{ color: '#880808' }}>ANT</strong>el</strong></h5>
                         <br />
 
                     </Form>
