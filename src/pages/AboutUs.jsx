@@ -83,20 +83,6 @@ export default function AboutUs() {
                 </Row>
 
 
-                <Modal show={showEmail} onHide={handleCloseEmail}>
-                    <Modal.Header closeButton style={{ backgroundColor: '#F2D2BD' }}>
-                        <Modal.Title style={{ color: '#880808' }}>Email</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>You can email us at: <strong> support@carantel.com</strong></p>
-                    </Modal.Body>
-                    <Modal.Footer style={{ backgroundColor: '#F2D2BD' }}>
-                        <Button variant="secondary" onClick={handleCloseEmail}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
                 <Modal show={showContact} onHide={handleCloseContact}>
                     <Modal.Header closeButton style={{ backgroundColor: '#F2D2BD' }}>
                         <Modal.Title style={{ color: '#880808' }}>Contact Number</Modal.Title>
@@ -106,6 +92,20 @@ export default function AboutUs() {
                     </Modal.Body>
                     <Modal.Footer style={{ backgroundColor: '#F2D2BD' }}>
                         <Button variant="secondary" onClick={handleCloseContact}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal show={showEmail} onHide={handleCloseEmail}>
+                    <Modal.Header closeButton style={{ backgroundColor: '#F2D2BD' }}>
+                        <Modal.Title style={{ color: '#880808' }}>Email</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>You can email us at: <strong> support@carantel.com</strong></p>
+                    </Modal.Body>
+                    <Modal.Footer style={{ backgroundColor: '#F2D2BD' }}>
+                        <Button variant="secondary" onClick={handleCloseEmail}>
                             Close
                         </Button>
                     </Modal.Footer>

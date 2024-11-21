@@ -37,7 +37,6 @@ export default function MainPage() {
                         )}
                     </Nav>
                     <Nav className="ms-auto">
-                        {/* Only show the Sign Up/Login link if the user is not logged in */}
                         {!currentUser && (
                             <Nav.Link href="/login" style={{ color: '#E97451' }}>Sign Up/Login</Nav.Link>
                         )}
