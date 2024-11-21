@@ -30,8 +30,8 @@ export default function VintageCard1() {
         { property: "Manufacturer :", value: "Bugatti" },
         { property: "Engine :", value: "3.3 L" },
         { property: "Transmission :", value: "4-speed manual" },
-        { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 12,690 per-month / RM 1,237,500" },
+        { property: "Transaction :", value: " Sale" },
+        { property: "Price :", value: "RM 3,932,581" },
     ];
     const images = [BugA1, BugA2, BugA3, BugA4, BugA5];
 
@@ -84,7 +84,7 @@ export default function VintageCard1() {
                         1939 Bugatti Type 57 Atalante
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">1,237,500</strong> RM 12,690/month
+                        RM <strong className="fs-5">3,932,581</strong>
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         3.3 litre engine

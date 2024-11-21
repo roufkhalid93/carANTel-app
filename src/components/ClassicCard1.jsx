@@ -27,8 +27,8 @@ export default function ClassicCard1() {
         { property: "Manufacturer :", value: "Porsche" },
         { property: "Engine/Motor :", value: "3.6 L (432 Nm)" },
         { property: "Transmission :", value: "6-speed manual" },
-        { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 940 per-month / RM 85,800" },
+        { property: "Transaction :", value: "Sale" },
+        { property: "Price :", value: "RM 1,510,387" },
     ];
     const images = [PorshGT1, PorshGT2, PorshGT3];
 
@@ -76,7 +76,7 @@ export default function ClassicCard1() {
                         1993 Porshe 911 GT2 (993)
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">85,800</strong> RM 940/month
+                        RM <strong className="fs-5">1,510,387</strong>
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         3.6 litre engine

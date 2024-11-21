@@ -31,7 +31,7 @@ export default function VeteranCard3() {
         { property: "Engine :", value: "6.4 L" },
         { property: "Transmission :", value: "4-speed manual" },
         { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 12,690 per-month / RM 1,237,500" },
+        { property: "Price :", value: "RM 53,767 per-month / RM 580,909" },
     ];
     const images = [americanS1, americanS2, americanS3, americanS4, americanS5];
 
@@ -79,7 +79,7 @@ export default function VeteranCard3() {
                         1913 American Scout Roadster
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">1,237,500</strong> RM 12,690/month
+                        RM <strong className="fs-5">580,909</strong> RM 53,767/month
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         6.4 litre engine

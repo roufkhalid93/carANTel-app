@@ -31,7 +31,7 @@ export default function VintageCard4() {
         { property: "Engine :", value: "7.4 L" },
         { property: "Transmission :", value: "3-speed manual" },
         { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 12,690 per-month / RM 1,237,500" },
+        { property: "Price :", value: "RM 8,752 per-month / RM 1,032,281" },
     ];
     const images = [CadV1, CadV2, CadV3, CadV4, CadV5, CadV6];
 
@@ -84,7 +84,7 @@ export default function VintageCard4() {
                         1939 Cadillac V-16
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">1,237,500</strong> RM 12,690/month
+                        RM <strong className="fs-5">1,032,281</strong> RM 8,752/month
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         7.4 litre engine

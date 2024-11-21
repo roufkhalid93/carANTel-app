@@ -30,7 +30,7 @@ export default function VintageCard3() {
         { property: "Engine :", value: "1.6 L" },
         { property: "Transmission :", value: "4-speed manual" },
         { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 12,690 per-month / RM 1,237,500" },
+        { property: "Price :", value: "RM 2,700 per-month / RM 286,004" },
     ];
     const images = [VolksB1, VolksB2, VolksB3, VolksB4, VolksB5];
 
@@ -73,13 +73,13 @@ export default function VintageCard3() {
                 />
                 <Card.Body style={{ backgroundColor: '#F8DE7E', height: '210px' }}>
                     <Card.Title className='mb-1'>
-                        Volkswagen Bettle
+                        Volkswagen Beetle
                     </Card.Title>
                     <Card.Text className='mb-1'>
-                        1940 Volkswagen Bettle Kafer
+                        1940 Volkswagen Beetle Kafer
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">1,237,500</strong> RM 12,690/month
+                        RM <strong className="fs-5">286,004</strong> RM 2,700/month
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         1.6 litre engine

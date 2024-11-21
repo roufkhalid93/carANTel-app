@@ -30,7 +30,7 @@ export default function VeteranCard2() {
         { property: "Engine :", value: "2.6 L" },
         { property: "Transmission :", value: "3-speed manual" },
         { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 12,690 per-month / RM 1,237,500" },
+        { property: "Price :", value: "RM 5,176 per-month / RM 516,127" },
     ];
     const images = [RenC1, RenC2, RenC3, RenC4];
 
@@ -79,7 +79,7 @@ export default function VeteranCard2() {
                         1912 Renault CB Coupe de Ville
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">1,237,500</strong> RM 12,690/month
+                        RM <strong className="fs-5">516,127</strong> RM 5,176/month
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         2.6 litre engine

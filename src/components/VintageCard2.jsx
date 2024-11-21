@@ -30,8 +30,8 @@ export default function VintageCard2() {
         { property: "Manufacturer :", value: "Rolls-Royce" },
         { property: "Engine :", value: "4.6 L" },
         { property: "Transmission :", value: "4-speed manual" },
-        { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 12,690 per-month / RM 1,237,500" },
+        { property: "Transaction :", value: " Sale" },
+        { property: "Price :", value: "RM 387,687" },
     ];
     const images = [RollsS1, RollsS2, RollsS3, RollsS4, RollsS5];
 
@@ -80,7 +80,7 @@ export default function VintageCard2() {
                         1949 Rolls Royce Silver Dawn
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">1,237,500</strong> RM 12,690/month
+                        RM <strong className="fs-5">387,687</strong>
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         4.6 litre engine

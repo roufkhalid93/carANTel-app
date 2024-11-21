@@ -31,7 +31,7 @@ export default function VeteranCard4() {
         { property: "Engine :", value: "9.8 L" },
         { property: "Transmission :", value: "4-speed manual" },
         { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 12,690 per-month / RM 1,237,500" },
+        { property: "Price :", value: "RM 21,041 per-month / RM 2,211,973" },
     ];
     const images = [MercHP1, MercHP2, MercHP3, MercHP4, MercHP5, MercHP6];
 
@@ -83,7 +83,7 @@ export default function VeteranCard4() {
                         1911 Mercedes 70HP Touring
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">1,237,500</strong> RM 12,690/month
+                        RM <strong className="fs-5">2,211,973</strong> RM 21,041/month
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         9.8 litre engine

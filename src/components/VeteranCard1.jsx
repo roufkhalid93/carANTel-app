@@ -27,8 +27,8 @@ export default function VeteranCard1() {
         { property: "Manufacturer :", value: "Rolls Royce" },
         { property: "Engine :", value: "V6" },
         { property: "Transmission :", value: "4-speed manual" },
-        { property: "Transaction :", value: ["Rental ", "/", " Sale"] },
-        { property: "Price :", value: "RM 12,690 per-month / RM 1,237,500" },
+        { property: "Transaction :", value: "Sale" },
+        { property: "Price :", value: "RM 3,798,386" },
     ];
     const images = [RollsG2, RollsG3, RollsG1];
 
@@ -77,7 +77,7 @@ export default function VeteranCard1() {
                         1913 Rolls Royce Silver Ghost
                     </Card.Text>
                     <Card.Text>
-                        RM <strong className="fs-5">1,237,500</strong> RM 12,690/month
+                        RM <strong className="fs-5">3,798,386</strong>
                     </Card.Text>
                     <Card.Text className='mb-1'><i className="bi bi-speedometer" style={{ color: '#880808', marginRight: '10px' }}></i>
                         V6 engine
