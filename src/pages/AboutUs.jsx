@@ -57,7 +57,7 @@ export default function AboutUs() {
                         <Card className="p-3 mb-3">
                             <Card.Body style={{ backgroundColor: '#F2D2BD' }}>
                                 <h5 style={{ color: '#8B4513' }}>About Us</h5>
-                                <strong >car<strong style={{ color: '#880808' }}>ANT</strong>el</strong> is a leading SouthEast Asian platform that specialized in the buying and selling classic and vintage cars. Founded in 2024, the start-up company has rapidly grown one become one of the larget and most trusted online car trading platforms in the region.
+                                <strong >car<strong style={{ color: '#880808' }}>ANT</strong>el</strong> is a leading Southeast Asian platform that specialized in the buying and selling classic and vintage cars. Founded in 2024, the start-up company has rapidly grown one become one of the larget and most trusted online car trading platforms in the region.
                                 {/* It has received significant investments to grow its operations, enhance its technology, and improve its customer service. The company aims to redefine the used car market in the region by making the buying and selling process as smooth and transparent as possible. */}
                             </Card.Body>
                             <Card.Body style={{ backgroundColor: '#F2D2BD' }}>
