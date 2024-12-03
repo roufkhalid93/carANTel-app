@@ -18,54 +18,6 @@ export default function SignupPage() {
     const auth = getAuth();
     const { currentUser } = useContext(AuthContext)
 
-    // useEffect(() => {
-    //     if (currentUser) navigate("/login");
-    // }, [currentUser, navigate]);
-
-
-    // const handleSignUp = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const res = await createUserWithEmailAndPassword(
-    //             auth,
-    //             // username,
-    //             email,
-    //             password
-    //         );
-    //         console.log(res.user);
-    //         toast.success('Account created successfully!', {
-    //             position: "bottom-center",
-    //             autoClose: 1000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             theme: "dark",
-    //         });
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-
-    // const provider = new GoogleAuthProvider();
-    // const handleGoogleLogin = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         await signInWithPopup(auth, provider);
-    //         toast.success('Account created successfully!', {
-    //             position: "bottom-center",
-    //             autoClose: 1000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             theme: "dark",
-    //         });
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
     useEffect(() => {
         if (currentUser) navigate("/");
     }, [currentUser, navigate]);
