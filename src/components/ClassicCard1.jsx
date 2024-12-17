@@ -32,6 +32,7 @@ export default function ClassicCard1() {
     ];
     const images = [PorshGT1, PorshGT2, PorshGT3];
 
+    // State for contact name
     const [contactName, setContactName] = useState(false);
 
     useEffect(() => {
@@ -44,16 +45,30 @@ export default function ClassicCard1() {
         setContactName(true);
     };
 
+    // State for contact details and click count
     const [contactDetails, setContactDetails] = useState(false);
+    const [clickCount, setClickCount] = useState(0);
 
     useEffect(() => {
         if (!showModal) {
             setContactDetails(false);
+            setClickCount(0); // Reset click count when modal is closed
         }
     }, [showModal]);
 
     const showContactDetails = () => {
-        setContactDetails(true);
+        setClickCount((prevCount) => prevCount + 1);
+
+        // First click: Display contact details
+        if (!contactDetails) {
+            setContactDetails(true);
+        }
+
+        // Second click: Open email client
+        if (clickCount + 1 === 2) {
+            window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=allca@gmail.com";
+            setClickCount(0); // Reset click count after triggering email
+        }
     };
 
     return (
