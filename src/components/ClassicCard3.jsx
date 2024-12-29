@@ -48,15 +48,26 @@ export default function ClassicCard3() {
     };
 
     const [contactDetails, setContactDetails] = useState(false);
+    const [clickCount, setClickCount] = useState(0);
+
 
     useEffect(() => {
         if (!showModal) {
             setContactDetails(false);
+            setClickCount(0);
         }
     }, [showModal]);
 
     const showContactDetails = () => {
-        setContactDetails(true);
+        setClickCount((prevCount) => prevCount + 1);
+
+        if(!contactDetails){
+            setContactDetails(true);
+        }
+        if (clickCount + 1 === 2){
+            window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=licud@gmail.com";
+            setClickCount(0)
+        }
     };
 
 
