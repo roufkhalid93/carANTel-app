@@ -48,6 +48,7 @@ export default function ClassicCard4() {
     };
 
     const [contactDetails, setContactDetails] = useState(false);
+    const [clickCount, setClickCount] = useState(0);
 
     useEffect(() => {
         if (!showModal) {
@@ -56,7 +57,15 @@ export default function ClassicCard4() {
     }, [showModal]);
 
     const showContactDetails = () => {
-        setContactDetails(true);
+        setClickCount((prevCount) => prevCount + 1)
+
+        if(!contactDetails){
+            setContactDetails(true);
+        }
+        if (clickCount + 1 === 2){
+            window.location.href="https://mail.google.com/mail/?view=cm&fs=1&to=jawil@gmail.com"
+            setClickCount(0)
+        }
     };
 
 
