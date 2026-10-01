@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/AuthProvider";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import SignupBg from "../assets/classic&modernClassic/jaguarEType/JagE1.jpg";
 
 
 export default function SignupPage() {
@@ -97,7 +98,7 @@ export default function SignupPage() {
 
     return (
         <div style={{
-            backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/capstone-project-fac0a.appspot.com/o/carImages%2FAlfa_Romeo_33_Stradale.jpg?alt=media&token=fd50db8b-3fd0-4ce5-b19d-e0537356e28a")',
+            backgroundImage: `url(${SignupBg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: '100vh',

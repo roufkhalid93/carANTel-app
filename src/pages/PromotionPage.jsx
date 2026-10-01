@@ -2,10 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Footer from '../components/Footer';
-import ClassicCard2 from '../components/ClassicCard2';
-import ClassicCard4 from '../components/ClassicCard4';
-import VintageCard4 from '../components/VintageCard4';
-import VeteranCard4 from '../components/VeteranCard4';
+import CarGrid from '../components/CarGrid';
+import { cars } from '../data/cars';
 import { useContext } from 'react';
 import { AuthContext } from '../components/AuthProvider';
 
@@ -30,15 +28,8 @@ export default function PromotionPage() {
                     </Nav>
                 </Container>
             </Navbar>
-            <Container className="mt-4 flex-grow-1">
-                <h5 className="d-flex justify-content-center mb-3 mt-3" style={{ color: '#880808' }}><strong>Classic & Modern Classic</strong></h5>
-                <Container className="d-flex align-items-start row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-3">
-                    <ClassicCard2 />
-                    <ClassicCard4 />
-                    <VintageCard4 />
-                    <VeteranCard4 />
-                    {/* use href instead of onclick */}
-                </Container>
+            <Container className="mt-4 pt-3 flex-grow-1">
+                <CarGrid title="Promotions" cars={cars.filter((car) => car.promotion)} />
             </Container>
             <Footer />
         </div>

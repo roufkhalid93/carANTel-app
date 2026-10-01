@@ -5,6 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../components/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import LoginBg from "../assets/classic&modernClassic/lamborghiniMiura/LamboM1.jpg";
 
 
 
@@ -44,7 +45,7 @@ export default function LoginPage() {
 
     return (
         <div style={{
-            backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/capstone-project-fac0a.appspot.com/o/carImages%2FAlfa-Romeo-33-Stradale-10.jpeg?alt=media&token=ea1e427f-8807-4303-8c39-a156f4446881")',
+            backgroundImage: `url(${LoginBg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: '100vh',
