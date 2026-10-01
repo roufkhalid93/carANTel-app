@@ -1,174 +1,397 @@
-.custom-card {
-    padding: 20px;
-    border-radius: 8px;
+/* ---------- Listing grid ---------- */
+
+.car-section {
+    margin-bottom: 3rem;
 }
 
-.custom-modal {
-    width: 70vw !important;
-    height: auto;
-    max-width: none !important;
-    max-height: none !important;
-    margin: 0 auto !important;
+.car-section__title {
+    color: #880808;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
-.custom-modal .modal-dialog {
-    width: 70% !important;
-    max-width: 70%;
-    height: 80% !important;
-    max-height: 80%;
-    margin: auto;
+.car-section__title::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 3px;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+    background-color: #E97451;
 }
 
-.custom-modal .modal-content {
-    height: 100%;
-    overflow-y: auto;
-}
+/* ---------- Listing card ---------- */
 
-.swiper-button-next,
-.swiper-button-prev {
-    color: #A95C68;
-
-}
-
-.swiper-pagination-bullet {
-    background-color: #A95C68;
-}
-
-.swiper-pagination-bullet-active {
-    background-color: darkred;
-}
-
-.swiper-slide-custom {
-    position: relative;
-    height: auto;
-    width: 700px;
+/* .card.car-card: Bootstrap's CSS loads after this file, so a single class would lose to .card */
+.card.car-card {
+    border: 1px solid #D9C4A8;
+    border-radius: 12px;
     overflow: hidden;
+    background-color: #EADDCA;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(136, 8, 8, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.car-card:hover,
+.car-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(136, 8, 8, 0.15);
+}
+
+.car-card:focus-visible {
+    outline: 3px solid #E97451;
+    outline-offset: 2px;
+}
+
+.car-card__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: #EADDCA;
+}
+
+.car-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    transition: transform 0.4s ease;
+}
+
+.car-card:hover .car-card__media img {
+    transform: scale(1.05);
+}
+
+.car-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.car-card__deal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 0.25em 0.65em;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.card-title.car-card__title {
+    margin-bottom: 0.15rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2b1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.car-card__subtitle {
+    font-size: 0.9rem;
+    color: #4a2a22;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.car-card__price {
+    margin-top: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #880808;
+}
+
+/* Always takes up one line so prices and specs line up across cards */
+.car-card__rental {
+    min-height: 1.3rem;
+    font-size: 0.85rem;
+    color: #4a2a22;
+}
+
+.car-card__specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+}
+
+.car-card__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3em 0.7em;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    color: #4a3228;
+    background-color: #FFF8EE;
+}
+
+.car-card__chip i {
+    color: #880808;
+}
+
+.car-card__cta {
+    margin-top: auto;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #880808;
+}
+
+.car-card__cta i {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.car-card:hover .car-card__cta i {
+    transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .car-card,
+    .car-card__media img,
+    .car-card__cta i {
+        transition: none;
+    }
+
+    .car-card:hover,
+    .car-card:hover .car-card__media img {
+        transform: none;
+    }
+}
+
+/* ---------- Details modal ---------- */
+
+/*
+ * Desktop layout (>= 768px), photo is 3:2:
+ *
+ *   +-----------------------+-----------+
+ *   |                       |  details  |
+ *   | gallery  (2/3 wide,   |  (1/3     |
+ *   |           full height)|   wide)   |
+ *   |                       +-----------+
+ *   |                       |  contact  |
+ *   +-----------------------+-----------+
+ *
+ * With a body width W, the gallery is 2/3 W wide and 2/3 W / 1.5 = 4/9 W tall,
+ * which sets the height of the whole layout. The dialog's max-width keeps
+ * that (plus the header) inside the screen height.
+ */
+
+@media (min-width: 576px) {
+    .modal-dialog.car-modal {
+        max-width: min(1200px, calc(100vw - 2rem), calc((100vh - 11rem) * 2.25 + 2rem));
+        max-width: min(1200px, calc(100vw - 2rem), calc((100dvh - 11rem) * 2.25 + 2rem));
+    }
+}
+
+.car-modal .modal-header,
+.car-modal .modal-body {
+    background-color: #fff;
+}
+
+.car-modal .modal-header {
+    border-bottom: none;
+}
+
+.car-modal .modal-body {
+    container-type: inline-size;
+}
+
+.car-modal .modal-title {
+    color: #880808;
+    font-weight: 700;
+    font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+}
+
+.car-modal__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "gallery"
+        "details"
+        "contact";
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .car-modal__layout {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-rows: 1fr auto;
+        grid-template-areas:
+            "gallery details"
+            "gallery contact";
+    }
+}
+
+/* ----- Gallery ----- */
+
+.car-modal__gallery {
+    grid-area: gallery;
+    align-self: center;
+    min-width: 0; /* lets Swiper shrink inside the grid cell */
+}
+
+.car-gallery {
+    --swiper-navigation-size: clamp(20px, 4vw, 34px);
+    --swiper-navigation-color: #fff;
+    --swiper-pagination-color: #fff;
+    --swiper-pagination-bullet-inactive-color: #fff;
+    --swiper-pagination-bullet-inactive-opacity: 0.5;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f1ece6; /* placeholder while a photo loads */
+}
+
+.car-gallery__slide {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    aspect-ratio: 3 / 2;
+    width: 100%;
 }
 
-.swiper-slide-img {
+.car-gallery__img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    cursor: pointer;
+    object-fit: cover; /* fill the 3:2 frame; non-3:2 photos are cropped slightly at the edges */
 }
 
-.modal-content-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 0.75rem;
+.car-gallery .swiper-button-next,
+.car-gallery .swiper-button-prev {
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
 }
 
-.car-details-table {
-    flex: 0 0 65%;
-    margin-right: 20px;
-    border-collapse: collapse;
-    width: 100%;
-}
+/* ----- Details ----- */
 
-.contact-details-wrapper {
-    flex: 0 0 30%;
+.car-modal__details {
+    grid-area: details;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid #D9C4A8;
+    border-radius: 10px;
+    background-color: #EADDCA;
 }
 
-.contact-image {
-    height: 150px;
-    width: 150px;
-    border-radius: 70px;
-    margin-bottom: 15px;
+@media (min-width: 768px) {
+    .car-modal__details {
+        justify-content: space-evenly;
+    }
+}
+
+.car-modal__details dt {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #4a2a22;
+}
+
+.car-modal__details dd {
+    margin: 0;
+    font-size: clamp(0.95rem, 1.6cqw, 1.1rem);
+    font-weight: 700;
+    color: #880808;
+    overflow-wrap: anywhere;
+}
+
+/* ----- Contact ----- */
+
+.car-modal__contact {
+    grid-area: contact;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.car-modal__contact-photo {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
     object-fit: cover;
-    margin-top: 0.5rem;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.car-modal__contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+@media (min-width: 768px) {
+    .car-modal__contact-photo {
+        width: clamp(56px, 7cqw, 96px);
+        height: clamp(56px, 7cqw, 96px);
+    }
 }
 
 .contact-button {
+    position: relative;
     width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
+    /* extra left/right padding keeps the centred text clear of the icon */
+    padding: 0.4rem 2.25rem;
+    border: 1px solid #D9C4A8;
     border-radius: 8px;
+    background-color: #EADDCA;
     cursor: pointer;
+    overflow-wrap: anywhere;
 }
 
-.cellStyle40 {
-    width: 40%;
-    border: none;
-    padding: 10px;
-    text-align: right;
-    font-weight: bold;
+/* Icon pinned to the left edge, same dark colour on every line */
+.contact-button > .bi {
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2b1a1a;
+    line-height: 1;
 }
 
-.cellStyle60 {
-    width: 60%;
-    border: none;
-    padding: 10px;
-    text-align: left;
+.contact-button:hover {
+    background-color: #E0CFB6;
+}
+
+/* Contact name and phone number: information only, not clickable */
+.contact-button--static {
+    display: block;
+    text-align: center;
+    cursor: default;
+}
+
+.contact-button--static:hover {
+    background-color: #EADDCA;
+}
+
+.contact-button--name {
+    font-weight: 700;
+}
+
+/* Email: opens a Gmail draft */
+.contact-button--link {
+    display: block;
+    text-align: center;
     color: #880808;
-    font-weight: bold;
+    font-weight: 600;
+    text-decoration: none;
 }
 
-@media (max-width: 768px) {
-    .custom-modal {
-        width: 80vw !important;
-        height: auto;
-        max-width: none !important;
-        max-height: none !important;
-        margin: 0 auto !important;
-    }
-}
-
-@media (max-width: 450px) {
-    .custom-modal {
-        width: 95vw !important;
-        height: auto;
-        max-width: none !important;
-        max-height: none !important;
-        margin: 0 auto !important;
-    }
-
-    .modal-content-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .car-details-table {
-        flex: 0 0 auto;
-        margin-right: 0;
-        margin-bottom: 20px;
-        width: 100%;
-    }
-
-    .contact-details-wrapper {
-        flex: 0 0 auto;
-        width: 100%;
-    }
-}
-
-@media (max-width: 380px) {
-
-    tr {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .cellStyle40,
-    .cellStyle60 {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: 2px 10px;
-        margin: 0;
-    }
-
-    .cellStyle60 {
-        margin-top: 1px;
-    }
+.contact-button--link:hover,
+.contact-button--link:focus-visible {
+    color: #880808;
+    text-decoration: underline;
 }
